@@ -12,15 +12,7 @@ jobs:
       - name: Say hello
         run: |
           echo "Hello world!"
-  date_job:
-    runs-on: ubuntu-22.04
-    steps:
-      - name: Now it is
-        run: |
+      - run: |
           date
-  directory_job:
-    runs-on: ubuntu-20.04
-    steps:
-      - name: Directory content
-        run: |
+      - run: |
           ls -l
