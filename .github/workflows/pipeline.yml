@@ -28,7 +28,7 @@ jobs:
       - name: Testing
         run: npm run test
       - name: Trigger deployment
-        if: ${{ github.event_name == 'push' && SKIP == 'false' }}
+        if: ${{ github.event_name == 'push' && env.SKIP == 'false' }}
         run: curl https://api.render.com/deploy/srv-${{ secrets.RENDER_SERVICE_ID }}?key=${{ secrets.RENDER_API_KEY }}
   tag_release:
     needs: simple_pipeline_job
@@ -36,7 +36,7 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - name: Tag release
-      if: ${{ github.event_name == 'push' && SKIP == 'false' }}
+      if: ${{ github.event_name == 'push' && github.env.SKIP == 'false' }}
       uses: anothrNick/github-tag-action@1.73.0
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
